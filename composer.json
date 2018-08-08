@@ -1,9 +1,9 @@
 {
-    "name": "JonasAntonio/ecommerce",
+    "name": "hcodebr/ecommerce",
     "authors": [
         {
-            "name": "Jonas Vicente",
-            "email": "jayv.jonas@gmail.com"
+            "name": "Hcode Treinamentos",
+            "email": "suporte@hcode.com.br"
         }
     ],
     "require": {
