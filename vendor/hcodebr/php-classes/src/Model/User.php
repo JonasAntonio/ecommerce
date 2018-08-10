@@ -80,14 +80,14 @@ class User extends Model {
 
 	}
 
-	private function encodePassword():string 
-		{
+	private function encodePassword()
+	{
 
-			$pass = (string) $this->getdespassword();
-			$passwordEncoded = password_hash($pass, PASSWORD_DEFAULT);
+		$pass = $this->getdespassword();
+		$op = ['cost'=>12];
 			
-			return $passwordEncoded;
-		}
+		return password_hash($pass, PASSWORD_BCRYPT, $op);
+	}
 
 	public function save()
 	{
