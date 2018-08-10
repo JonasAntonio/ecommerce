@@ -52,13 +52,13 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat" name="signIn">Sign In</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
 
-    <a href="#">I forgot my password</a><br>
+    <a href="/admin/forgot">I forgot my password</a><br>
     <a href="register.html" class="text-center">Register a new membership</a>
 
   </div>
@@ -80,6 +80,31 @@
       increaseArea: '20%' // optional
     });
   });
+</script>
+<script type="text/javascript">
+  
+  /*function verifyLogin(){
+        var usuario = document.form1.usuario.value;
+        var senha = document.form1.senha.value;
+        var erro = document.getElementById("erro");
+        if(usuario === "" && senha === ""){
+            erro.innerHTML = "Você deve digitar seu usuário e senha!";
+            document.form1.usuario.style.borderColor = "red";
+            document.form1.senha.style.borderColor = "red";
+            document.form1.usuario.focus();
+            return false;
+        }else if(usuario === ""){
+            erro.innerHTML = "O usuário não foi informado!";
+            document.form1.usuario.style.borderColor = "red";
+            document.form1.usuario.focus();
+            return false;
+        } else if(senha === ""){
+            erro.innerHTML = "A senha não foi informada!";
+            document.form1.senha.style.borderColor = "red";
+            document.form1.senha.focus();
+            return false;
+        }
+  */
 </script>
 </body>
 </html>
