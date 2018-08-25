@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require_once("vendor/autoload.php");
 
@@ -13,7 +13,7 @@ $app = new Slim();
 $app->config('debug', true);
 
 $app->get('/', function() {
-    
+
 	$page = new Page();
 
 	$page->setTpl("index");
@@ -21,7 +21,7 @@ $app->get('/', function() {
 });
 
 $app->get('/admin', function() {
-    
+
 	User::verifyLogin();
 
 	$page = new PageAdmin();
@@ -85,7 +85,7 @@ $app->get("/admin/users/create", function() {
 
 $app->get("/admin/users/:iduser/delete", function($iduser) {
 
-	User::verifyLogin();	
+	User::verifyLogin();
 
 	$user = new User();
 
@@ -143,7 +143,7 @@ $app->post("/admin/users/:iduser", function($iduser) {
 
 	$user->setData($_POST);
 
-	$user->update();	
+	$user->update();
 
 	header("Location: /admin/users");
 	exit;
@@ -303,6 +303,21 @@ $app->post("/admin/categories/:idcategory", function($idcategory){//rota que edi
 
 	header('Location: /admin/categories');
 	exit;
+});
+
+$app->get("/categories/:idcategory", function($idcategory){
+
+    $category = new Category();
+
+    $category->get((int)$idcategory);
+
+    $page = new Page();
+
+    $page->setTpl("category", [
+        'category'=>$category->getValues(),
+        'products'=>[]//buscará do banco de dados
+    ]);
+
 });
 
 $app->run();
