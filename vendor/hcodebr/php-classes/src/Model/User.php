@@ -26,7 +26,6 @@ class User extends Model {
 
 		$data = $results[0];
 
-		//if($password === $data["despassword"])//não está ecriptando a senha
 		if (password_verify($password, $data["despassword"]) === true)
 		{
 
@@ -81,15 +80,14 @@ class User extends Model {
 
 	}
 
-	/*public static function encodePassword($pass)
+	public static function encodePassword($pass)
 	{
 
-		$pass = $this->getdespassword();
 		$op = ['cost'=>12];
 
 		return password_hash($pass, PASSWORD_BCRYPT, $op);
-	}*/
-
+	}
+	/*
 	private function encodePassword()
 	{
 
@@ -98,6 +96,7 @@ class User extends Model {
 
 		return password_hash($pass, PASSWORD_DEFAULT, $op);
 	}
+	*/
 
 	public function save()
 	{
@@ -107,7 +106,7 @@ class User extends Model {
 		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 			":desperson"=>$this->getdesperson(),
 			":deslogin"=>$this->getdeslogin(),
-			":despassword"=>$this->encodePassword(),
+			":despassword"=>$this->encodePassword($this->getdespassword()),
 			":desemail"=>$this->getdesemail(),
 			":nrphone"=>$this->getnrphone(),
 			":inadmin"=>$this->getinadmin()
