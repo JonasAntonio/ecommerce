@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Hcode\Model;
 
@@ -16,7 +16,7 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :LOGIN", array(":LOGIN"=>$login)); 
+		$results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :LOGIN", array(":LOGIN"=>$login));
 
 		if (count($results) === 0)
 		{
@@ -87,16 +87,6 @@ class User extends Model {
 
 		return password_hash($pass, PASSWORD_BCRYPT, $op);
 	}
-	/*
-	private function encodePassword()
-	{
-
-		$pass = $this->getdespassword();
-		$op = ['cost'=>12];
-
-		return password_hash($pass, PASSWORD_DEFAULT, $op);
-	}
-	*/
 
 	public function save()
 	{
@@ -146,7 +136,7 @@ class User extends Model {
 			":inadmin"=>$this->getinadmin()
 		));
 
-		$this->setData($results[0]);		
+		$this->setData($results[0]);
 
 	}
 
@@ -195,18 +185,18 @@ class User extends Model {
 
 				$result = base64_encode($iv.$code);
 
-				if ($inadmin === true) 
+				if ($inadmin === true)
 				{
 					$link = "http://www.hcodecommerce.com.br/admin/forgot/reset?code=$result";
-				} 
-				else 
+				}
+				else
 				{
 					$link = "http://www.hcodecommerce.com.br/forgot/reset?code=$result";
-				} 
+				}
 				$mailer = new Mailer($data['desemail'], $data['desperson'], "Redefinir senha da Hcode Store", "forgot", array(
 					"name"=>$data['desperson'],
 					"link"=>$link
-				)); 
+				));
 				$mailer->send();
 				return $link;
 			}
@@ -226,7 +216,7 @@ class User extends Model {
 		$sql = new Sql();
 //sql retornando vazia
 		$results = $sql->select("SELECT * FROM tb_userspasswordsrecoveries a INNER JOIN tb_users b USING(iduser) INNER JOIN tb_persons c USING(idperson) WHERE a.idrecovery = :idrecovery AND a.dtrecovery IS NULL AND DATE_ADD(a.dtregister, INTERVAL 1 HOUR) >= NOW();", array(":idrecovery"=>$idrecovery));
-		
+
 		if (count($results) === 0)
 		{
 			throw new \Exception("Não foi possível recuperar a senha!");
